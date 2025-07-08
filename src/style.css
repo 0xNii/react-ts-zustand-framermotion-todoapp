@@ -1,0 +1,215 @@
+:root {
+  --fonts:
+    'Google Sans', 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --primary-50: #fef9ec;
+  --primary-100: #fceec9;
+  --primary-200: #f8db8f;
+  --primary-300: #f5c254;
+  --primary-400: #f2ab2d;
+  --primary-500: #ec8f1e;
+  --primary-600: #d0670f;
+  --primary-700: #ad4710;
+  --primary-800: #8c3714;
+  --primary-900: #742e13;
+  --primary-950: #421606;
+  --gray-50: hsl(0, 0%, 98%);
+  --gray-100: hsl(0, 5%, 96%);
+  --gray-200: hsl(0, 6%, 90%);
+  --gray-300: hsl(0, 5%, 84%);
+  --gray-400: hsl(0, 5%, 63%);
+  --gray-500: hsl(0, 4%, 46%);
+  --gray-600: hsl(0, 5%, 34%);
+  --gray-700: hsl(0, 5%, 26%);
+  --gray-800: hsl(0, 4%, 16%);
+  --gray-900: hsl(0, 7%, 11%);
+  --gray-950: hsl(0, 10%, 4%);
+  --red-50: hsl(0, 86%, 97%);
+  --red-100: hsl(0, 93%, 94%);
+  --red-200: hsl(0, 96%, 89%);
+  --red-300: hsl(0, 93%, 82%);
+  --red-400: hsl(0, 91%, 71%);
+  --red-500: hsl(0, 84%, 60%);
+  --red-600: hsl(0, 72%, 51%);
+  --red-700: hsl(0, 74%, 42%);
+  --red-800: hsl(0, 70%, 35%);
+  --red-900: hsl(0, 63%, 31%);
+  --red-950: hsl(0, 75%, 15%);
+  --primary-light: var(--primary-400);
+  --primary: var(--primary-500);
+  --primary-foreground: var(--primary-100);
+  --neutral-light: var(--gray-400);
+  --neutral-foreground: var(--gray-100);
+  --text-color: var(--gray-800);
+  --text-muted: var(--gray-600);
+  --text-destructive: var(--red-500);
+  --text-white: #fff;
+  --text-black: #000;
+  --bg: var(--gray-50);
+  --bg-muted: var(--gray-50);
+  --bg-destructive: var(--red-100);
+  --bg-backdrop: rgba(255, 255, 255, 0.1);
+  --input-placeholder-color: var(--gray-400);
+  --checkbox-height: 18px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*,
+:active,
+:focus,
+:hover {
+  outline: none !important;
+}
+
+html {
+  font-family: var(--fonts);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+
+  &:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: inherit;
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: inherit;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+img,
+picture {
+  display: block;
+  user-select: none;
+}
+
+button,
+[type='button'] {
+  background-color: transparent;
+  appearance: button;
+  -webkit-appearance: button;
+  cursor: pointer;
+  border: none;
+  text-transform: none;
+}
+
+:is(button, input)::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input[type='checkbox'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input::-moz-placeholder {
+  opacity: 1;
+  font-size: 14px;
+  color: var(--input-placeholder-color);
+}
+
+input::placeholder {
+  opacity: 1;
+  font-size: 14px;
+  color: var(--input-placeholder-color);
+  font-family: var(--fonts);
+}
+
+/* Removes browser’s built-in autofill styling. */
+input:-webkit-autofill {
+  background-clip: text; /* Uses text color as the background */
+}
+
+/* ================ TYPOGRAPHY ========================= */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 22px;
+  letter-spacing: -0.32px;
+}
+
+h2,
+h3 {
+  letter-spacing: -0.6px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-block-end: 12px;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  font-family: var(--fonts);
+  vertical-align: baseline;
+}
+
+input {
+  font-size: 15px;
+  font-family: var(--fonts);
+}
+
+dialog {
+  border: none;
+}
+
+/* To prevent the user from being able to scroll the page behind it when a
+dialog is open */
+html:has(dialog[open]) {
+  overflow: hidden;
+}

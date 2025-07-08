@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Google sans';
+  src: url('GoogleSans-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; /* or optional, fallback, block */
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('Inter-VariableFont.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; /* or optional, fallback, block */
+}

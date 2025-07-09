@@ -3,13 +3,21 @@ import { styled } from 'styled-components';
 
 type Props = {
   ref: React.RefObject<HTMLInputElement | null>;
-  onKeyUp?: React.KeyboardEventHandler<HTMLInputElement>;
   placeholder?: string;
+  onKeyUp?: (
+    e: any
+  ) => void | React.KeyboardEventHandler<HTMLInputElement> /* Event handler */;
 };
 
 const TodoInput = ({ ref, placeholder, ...eventHandler }: Props) => {
   return (
-    <Input ref={ref} type="text" placeholder={placeholder} {...eventHandler} />
+    <Input
+      ref={ref}
+      type="text"
+      name="todo-input"
+      placeholder={placeholder}
+      {...eventHandler}
+    />
   );
 };
 

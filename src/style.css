@@ -37,7 +37,6 @@
   --primary-light: var(--primary-400);
   --primary: var(--primary-500);
   --primary-foreground: var(--primary-100);
-  --neutral-light: var(--gray-400);
   --neutral-foreground: var(--gray-100);
   --text-color: var(--gray-800);
   --text-muted: var(--gray-600);
@@ -138,10 +137,6 @@ button,
   cursor: pointer;
   border: none;
   text-transform: none;
-}
-
-:is(button, input)::-moz-focus-inner {
-  border: 0;
   padding: 0;
 }
 
@@ -177,7 +172,7 @@ h4 {
 }
 
 h1 {
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: -0.32px;
 }
 

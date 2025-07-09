@@ -1,3 +1,6 @@
+/**
+ * This function creates a unique ID for todos
+ * */
 export const UUID = (): string => {
   let result = '';
   const characters =

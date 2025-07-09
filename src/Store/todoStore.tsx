@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface Todo {
-  id: string;
+  readonly id: string;
   text: string;
   completed: boolean;
 }
@@ -42,12 +42,3 @@ const useTodoStore = create(
 );
 
 export default useTodoStore;
-
-/* Practice with no store actions */
-// export const updateTodos = (todos: State["todos"]) => {
-//   useTodoStore.setState({ todos });
-// };
-
-// export const todos = () => {
-//     useTodoStore.getState().todos
-// }

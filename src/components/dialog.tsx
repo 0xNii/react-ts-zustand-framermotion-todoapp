@@ -1,18 +1,33 @@
 import type React from 'react';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { styled } from 'styled-components';
-import TodoInput from '../TodoInput';
-import type { Todo } from '../../Store/todoStore';
-import { UUID } from '../../Helpers/uuid';
-import useTodoStore from '../../Store/todoStore';
+import type { Todo } from '../store/todoStore';
+import useTodoStore from '../store/todoStore';
+import { UUID } from '../helpers/uuid';
+import TodoInput from './input';
+import { CloseIcon } from '../utils/icons';
 
 type Props = {
   dialogRef: React.RefObject<HTMLDialogElement | null>;
   toggleDialog: () => void;
+  action: 'add' | 'edit';
+  todo?: Todo;
 };
 
-const AddTodoDialog = ({ dialogRef, toggleDialog }: Props) => {
+const TodoDialog = ({ dialogRef, toggleDialog, action, todo }: Props) => {
   const todoInput = useRef<HTMLInputElement>(null);
+
+  /* Set todo text as input value when editing todo */
+  useEffect(() => {
+    if (!todoInput.current) return;
+
+    if (action === 'edit') {
+      todoInput.current.value = todo!!!.text;
+    }
+  }, []);
+
+  const todos = useTodoStore((state) => state.todos);
+  const setTodos = useTodoStore((state) => state.setTodos);
   const addNewTodo = useTodoStore((state) => state.addNewTodo);
 
   const addNewTodoHandler: React.KeyboardEventHandler<HTMLInputElement> = (
@@ -31,11 +46,27 @@ const AddTodoDialog = ({ dialogRef, toggleDialog }: Props) => {
       /* Add new todo to TODOS state */
       addNewTodo(todo);
 
-      /* Close Dialog */
+      /* Close dialog */
       toggleDialog();
 
       /* Reset input */
       todoInput.current.value = '';
+    }
+  };
+
+  const updateTodo = (e: React.KeyboardEvent, id: Todo['id']) => {
+    if (!todoInput.current) return;
+
+    if (e.key === 'Enter' && todoInput.current.value.trim().length > 0) {
+      /* The Non-Null assertion operator(!) tells TypeScript that todoInput.current is not null */
+      const updatedTodos = todos.map((todo) =>
+        todo.id === id ? { ...todo, text: todoInput.current!!!.value } : todo
+      );
+
+      setTodos(updatedTodos);
+
+      /* Close Dialog */
+      toggleDialog();
     }
   };
 
@@ -55,42 +86,32 @@ const AddTodoDialog = ({ dialogRef, toggleDialog }: Props) => {
   };
 
   return (
-    <Dialog className="dialog" ref={dialogRef} onClick={lightDismiss}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="close-btn"
-        onClick={toggleDialog}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M6 18 18 6M6 6l12 12"
-        />
-      </svg>
+    <Dialog ref={dialogRef} onClick={lightDismiss}>
+      <span className="close-btn" onClick={toggleDialog}>
+        <CloseIcon />
+      </span>
 
       <div className="content">
         <h1>
-          Type your todo and hit <i>Enter</i>
+          {action === 'add' ? 'Type' : 'Edit'} your todo and hit <i>Enter</i>
         </h1>
         <TodoInput
           ref={todoInput}
-          onKeyUp={addNewTodoHandler}
-          placeholder="eg. Review code & debug"
+          onKeyUp={(e) =>
+            action === 'add' ? addNewTodoHandler(e) : updateTodo(e, todo!!!.id)
+          }
+          placeholder="eg. Take a course in JS"
         />
       </div>
     </Dialog>
   );
 };
 
-export default AddTodoDialog;
+export default TodoDialog;
 
 const Dialog = styled.dialog`
   display: grid;
-  width: min(100vw, 380px);
+  width: min(100vw, 400px);
   overflow: hidden;
   position: fixed;
   padding: 10px 20px 20px;
@@ -139,7 +160,7 @@ const Dialog = styled.dialog`
     width: 24px;
     cursor: pointer;
     border-radius: 50%;
-    padding: 2px 4px;
+    padding: 4px;
     background: var(--bg-destructive);
     color: var(--text-destructive);
   }

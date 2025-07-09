@@ -51,7 +51,7 @@ const Message = styled.div`
 const ErrorBoundaryFallbackComponent = () => (
   <Layout>
     <Message>
-      Something Error Ooccurring
+      Oops! something went wrong
       <span role="img" aria-label="face-emoji">
         😞
       </span>

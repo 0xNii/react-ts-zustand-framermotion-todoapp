@@ -1,5 +1,5 @@
-import ErrorBoundary from '../ErrorBoundary';
-import TodoApp from './TodoApp';
+import ErrorBoundary from './ErrorBoundary';
+import TodoApp from './components/TodoApp';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {

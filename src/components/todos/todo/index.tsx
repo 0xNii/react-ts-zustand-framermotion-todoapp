@@ -42,7 +42,12 @@ const Item = ({ todo }: Props) => {
 
   return (
     <>
-      <TodoItem value={todo} dragListener={false} dragControls={dragControls}>
+      <TodoItem
+        value={todo}
+        data-testid="todo-item"
+        dragListener={false}
+        dragControls={dragControls}
+      >
         <div className="text">
           <Checkbox>
             <input
@@ -184,7 +189,7 @@ const Checkbox = styled.span`
     }
   }
 
-  @keyframes dothatopcheck-19 {
+  @keyframes check-19 {
     0% {
       height: 0;
     }
@@ -196,7 +201,7 @@ const Checkbox = styled.span`
     }
   }
 
-  @-webkit-keyframes dothatopcheck-19 {
+  @-webkit-keyframes check-19 {
     0% {
       height: 0;
     }
@@ -208,7 +213,7 @@ const Checkbox = styled.span`
     }
   }
 
-  @-moz-keyframes dothatopcheck-19 {
+  @-moz-keyframes check-19 {
     0% {
       height: 0;
     }
@@ -298,9 +303,9 @@ const Checkbox = styled.span`
   input[type='checkbox']:checked + .check-box::before,
   .check-box.checked::before {
     height: calc(var(--checkbox-height) * 1.2);
-    -moz-animation: dothatopcheck-19 0.4s ease 0s forwards;
-    -o-animation: dothatopcheck-19 0.4s ease 0s forwards;
-    -webkit-animation: dothatopcheck-19 0.4s ease 0s forwards;
-    animation: dothatopcheck-19 0.4s ease 0s forwards;
+    -moz-animation: check-19 0.4s ease 0s forwards;
+    -o-animation: check-19 0.4s ease 0s forwards;
+    -webkit-animation: check-19 0.4s ease 0s forwards;
+    animation: check-19 0.4s ease 0s forwards;
   }
 `;

@@ -8,5 +8,7 @@ test('renders Vite + React text', () => {
       <TodoApp />
     </MemoryRouter>
   );
+
+  expect(screen.getByText(/Today/)).toBeInTheDocument();
   expect(screen.getByText(/0xNii/)).toBeInTheDocument();
 });

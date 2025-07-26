@@ -18,7 +18,23 @@ type Actions = {
 };
 
 const initialState: State = {
-  todos: [],
+  todos: [
+    {
+      id: 'TsHx9eEN5Y4A',
+      text: 'Learn TypeScript',
+      completed: false,
+    },
+    {
+      id: 'ba91OwrK0Dt8',
+      text: 'Merge conflicts',
+      completed: false,
+    },
+    {
+      id: 'QeejYipEf5nk',
+      text: 'Review code',
+      completed: true,
+    },
+  ],
 };
 
 const useTodoStore = create(

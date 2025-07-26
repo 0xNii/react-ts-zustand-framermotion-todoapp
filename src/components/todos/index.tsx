@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { type ReactElement, useEffect, useState } from 'react';
 import type { Todo } from '../../store/todoStore';
 import useTodoStore from '../../store/todoStore';
 import { Reorder } from 'framer-motion';
@@ -65,6 +65,7 @@ const TodoList = () => {
 
   return (
     <Reorder.Group
+      data-testid="todo-list"
       axis="y"
       onReorder={setItems}
       values={items}
@@ -72,7 +73,7 @@ const TodoList = () => {
       as="ul"
     >
       {items
-        .filter((todo) => {
+        .filter((todo): boolean => {
           switch (pathname) {
             case '/':
               return true;
@@ -80,11 +81,15 @@ const TodoList = () => {
               return !todo.completed;
             case '/completed':
               return todo.completed;
+            default:
+              return true;
           }
         })
-        .map((item) => (
-          <Item key={item.id} todo={item} />
-        ))}
+        .map(
+          (item): ReactElement => (
+            <Item key={item.id} todo={item} />
+          )
+        )}
     </Reorder.Group>
   );
 };

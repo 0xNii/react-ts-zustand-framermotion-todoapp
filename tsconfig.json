@@ -23,8 +23,8 @@
     "noUncheckedIndexedAccess": true,
     "allowUnreachableCode": false,
 
-    /* Testing & Node support */
-    "types": ["jest", "node"]
+    /* Testing */
+    "types": ["jest"]
   },
 
   "include": ["src", "jest.setup.ts"],

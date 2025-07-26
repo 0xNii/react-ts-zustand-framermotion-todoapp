@@ -8,17 +8,17 @@ const initialState = {
   todos: [
     {
       id: 'TsHx9eEN5Y4A',
-      text: 'monster',
+      text: 'Learn to code',
       completed: false,
     },
     {
       id: 'ba91OwrK0Dt8',
-      text: 'boss black',
+      text: 'Write tests',
       completed: false,
     },
     {
-      id: 'QwejYipEf5nk',
-      text: 'caffe latte',
+      id: 'QeejYipEf5nk',
+      text: 'Merge conflicts',
       completed: true,
     },
   ],

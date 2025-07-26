@@ -1,5 +1,8 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import type { StateCreator } from 'zustand';
+
+export type Paths = '/' | '/active' | '/completed';
 
 export interface Todo {
   readonly id: string;
@@ -7,7 +10,7 @@ export interface Todo {
   completed: boolean;
 }
 
-type State = {
+export type State = {
   todos: Todo[];
 };
 
@@ -22,34 +25,28 @@ const initialState: State = {
 };
 
 // Core store logic (shared between production and test stores)
-const createTodoStore = () =>
-  create<State & Actions>()((set, get) => ({
-    ...initialState,
-    addNewTodo: (todo) => set({ todos: [...get().todos, todo] }),
-    removeTodo: (id) =>
-      set({ todos: get().todos.filter((todo) => todo.id !== id) }),
-    setTodos: (todos) => set({ todos }),
-  }));
+const createTodoStore: StateCreator<State & Actions> = (set, get) => ({
+  ...initialState,
+
+  addNewTodo: (todo) => set({ todos: [...get().todos, todo] }),
+  removeTodo: (id) => {
+    const filteredTodos = get().todos.filter((todo) => !(todo.id === id));
+
+    get().setTodos(filteredTodos);
+  },
+  setTodos: (todos) => set({ todos }),
+});
 
 // Production store with persistence
 export const useTodoStore = create(
-  persist<State & Actions>(
-    (set, get) => ({
-      ...initialState,
-      addNewTodo: (todo) => set({ todos: [...get().todos, todo] }),
-      removeTodo: (id) =>
-        set({ todos: get().todos.filter((todo) => todo.id !== id) }),
-      setTodos: (todos) => set({ todos }),
-    }),
-    {
-      name: "Today's Todos",
-      storage: createJSONStorage(() => localStorage),
-    }
-  )
+  persist(createTodoStore, {
+    name: "Today's Todos",
+    storage: createJSONStorage(() => localStorage),
+  })
 );
 
 // Test store without persistence
-export const useTodoStoreTest = createTodoStore();
+export const useTodoStoreTest = create(createTodoStore);
 
 // Default export: Select store based on environment
 const isTestEnv = process.env.NODE_ENV === 'test';

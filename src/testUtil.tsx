@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import useTestTodoStore from './store/todoStore.test';
+import { useTodoStoreTest } from './store/todoStore';
 import type { State, Paths } from './store/todoStore.test';
 
 const defaultValue: State = {
@@ -14,7 +14,7 @@ const TestRenderer = (
   route: Paths = '/'
 ) => {
   // Set store todos state
-  useTestTodoStore.setState({ ...initialState });
+  useTodoStoreTest.setState({ ...initialState });
 
   return render(
     <MemoryRouter initialEntries={[route]}>

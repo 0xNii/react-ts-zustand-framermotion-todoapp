@@ -6,7 +6,7 @@ import Filters from './filters';
 import TodoList from './todos';
 
 const TodoApp = () => {
-  const todos = useTodoStore((state) => state.todos);
+  const { todos } = useTodoStore();
 
   return (
     <Layout>

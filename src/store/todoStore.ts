@@ -18,36 +18,27 @@ type Actions = {
 };
 
 const initialState: State = {
-  todos: [
-    {
-      id: 'TsHx9eEN5Y4A',
-      text: 'Learn TypeScript',
-      completed: false,
-    },
-    {
-      id: 'ba91OwrK0Dt8',
-      text: 'Merge conflicts',
-      completed: false,
-    },
-    {
-      id: 'QeejYipEf5nk',
-      text: 'Review code',
-      completed: true,
-    },
-  ],
+  todos: [],
 };
 
-const useTodoStore = create(
+// Core store logic (shared between production and test stores)
+const createTodoStore = () =>
+  create<State & Actions>()((set, get) => ({
+    ...initialState,
+    addNewTodo: (todo) => set({ todos: [...get().todos, todo] }),
+    removeTodo: (id) =>
+      set({ todos: get().todos.filter((todo) => todo.id !== id) }),
+    setTodos: (todos) => set({ todos }),
+  }));
+
+// Production store with persistence
+export const useTodoStore = create(
   persist<State & Actions>(
     (set, get) => ({
       ...initialState,
-
       addNewTodo: (todo) => set({ todos: [...get().todos, todo] }),
-      removeTodo: (id) => {
-        const filteredTodos = get().todos.filter((todo) => !(todo.id === id));
-
-        get().setTodos(filteredTodos);
-      },
+      removeTodo: (id) =>
+        set({ todos: get().todos.filter((todo) => todo.id !== id) }),
       setTodos: (todos) => set({ todos }),
     }),
     {
@@ -57,4 +48,9 @@ const useTodoStore = create(
   )
 );
 
-export default useTodoStore;
+// Test store without persistence
+export const useTodoStoreTest = createTodoStore();
+
+// Default export: Select store based on environment
+const isTestEnv = process.env.NODE_ENV === 'test';
+export default isTestEnv ? useTodoStoreTest : useTodoStore;

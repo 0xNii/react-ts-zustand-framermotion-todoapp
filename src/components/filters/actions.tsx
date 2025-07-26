@@ -7,10 +7,9 @@ import { ClearIcon, MarkIcon, ReaddIcon } from '../../utils/icons';
 const FilterActions = () => {
   const { pathname } = useLocation();
 
-  const todos = useTodoStore((state) => state.todos);
+  const { todos, setTodos } = useTodoStore();
   const activeTodosCount = todos.filter((todo) => !todo.completed).length;
   const completedTodosCount = todos.filter((todo) => todo.completed).length;
-  const setTodos = useTodoStore((state) => state.setTodos);
 
   /* Clear all completed todos */
   const clearCompletedTodos = () => {

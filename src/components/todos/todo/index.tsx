@@ -12,9 +12,7 @@ type Props = {
 };
 
 const Item = ({ todo }: Props) => {
-  const todos = useTodoStore((state) => state.todos);
-  const setTodos = useTodoStore((state) => state.setTodos);
-  const removeTodo = useTodoStore((state) => state.removeTodo);
+  const { todos, setTodos, removeTodo } = useTodoStore();
 
   const toggleTodoComplete = (id: Todo['id']) => {
     const toggledTodos = todos.map((todo) =>

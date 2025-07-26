@@ -8,26 +8,28 @@ const initialState = {
   todos: [
     {
       id: 'TsHx9eEN5Y4A',
-      text: 'Learn TypeScript',
+      text: 'monster',
       completed: false,
     },
     {
       id: 'ba91OwrK0Dt8',
-      text: 'Merge conflicts',
-      completed: true,
+      text: 'boss black',
+      completed: false,
     },
     {
-      id: 'QeejYipEf5nk',
-      text: 'Review code',
+      id: 'QwejYipEf5nk',
+      text: 'caffe latte',
       completed: true,
     },
   ],
 };
 
-test('should be render 3 todo items in initialAppState', async () => {
-  TestRenderer(<TodoList />, initialState, '/completed');
+test('should render 3 todo items in initialAppState', async () => {
+  const screen = TestRenderer(<TodoList />, initialState, '/completed');
 
   // screen.debug();
+
+  // console.log('Environment:', process.env.NODE_ENV);
 
   expect(screen.getByTestId('todo-list')).toBeInTheDocument();
   expect(screen.getByTestId('todo-list').children.length).toBe(2);

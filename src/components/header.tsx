@@ -1,24 +1,33 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import TodoDialog from './dialog';
 import { styled } from 'styled-components';
 import { PlusIcon } from '../utils/icons';
 
 const Header = () => {
-  /* Dialog */
+  // State to control dialog rendering
+  const [isDialogRendered, setIsDialogRendered] = useState(false);
+  // Reference to the dialog element
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const toggleDialog = () => {
-    if (!dialogRef.current) {
-      return;
-    }
-
-    dialogRef.current.hasAttribute('open')
-      ? dialogRef.current.close()
-      : dialogRef.current.showModal();
+  // Function to open the dialog (render and show)
+  const openDialog = (): void => {
+    setIsDialogRendered(true); // Render the dialog
+    // Use setTimeout to ensure the dialog is in the DOM before calling showModal
+    setTimeout(() => {
+      dialogRef.current?.showModal();
+    }, 0);
   };
 
-  /* Format date */
-  const date = new Date().toLocaleDateString('en-US', {
+  // Function to close the dialog (close and unmount)
+  const closeDialog = (): void => {
+    dialogRef.current?.close();
+
+    setTimeout(() => {
+      setIsDialogRendered(false); // Unmount the dialog
+    }, 300);
+  };
+
+  const formattedDate = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
@@ -30,21 +39,22 @@ const Header = () => {
       <Layout>
         <div className="header">
           <h1>Today's Todos</h1>
-          <span className="date">{date}</span>
+          <span className="date">{formattedDate}</span>
         </div>
 
-        <button type="button" className="addTodo" onClick={toggleDialog}>
+        <button type="button" className="addTodo" onClick={openDialog}>
           <PlusIcon />
           Add New Todo
         </button>
       </Layout>
 
-      {/*Dialog component*/}
-      <TodoDialog
-        dialogRef={dialogRef}
-        toggleDialog={toggleDialog}
-        action="add"
-      />
+      {isDialogRendered && (
+        <TodoDialog
+          dialogRef={dialogRef}
+          closeDialog={closeDialog}
+          action="add"
+        />
+      )}
     </>
   );
 };

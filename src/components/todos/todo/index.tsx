@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import type { Todo } from '../../../store/todoStore';
 import useTodoStore from '../../../store/todoStore';
@@ -12,7 +12,9 @@ type Props = {
 };
 
 const Item = ({ todo }: Props) => {
-  const { todos, setTodos, removeTodo } = useTodoStore();
+  const todos = useTodoStore((state) => state.todos);
+  const setTodos = useTodoStore((state) => state.setTodos);
+  const removeTodo = useTodoStore((state) => state.removeTodo);
 
   const toggleTodoComplete = (id: Todo['id']) => {
     const toggledTodos = todos.map((todo) =>
@@ -25,17 +27,24 @@ const Item = ({ todo }: Props) => {
   /* Framer motion drag controls hook */
   const dragControls = useDragControls();
 
-  /* Dialog */
+  // State to control dialog rendering
+  const [isDialogRendered, setIsDialogRendered] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  const toggleDialog = () => {
-    if (!dialogRef.current) {
-      return;
-    }
+  const openDialog = (): void => {
+    setIsDialogRendered(true);
 
-    dialogRef.current.hasAttribute('open')
-      ? dialogRef.current.close()
-      : dialogRef.current.showModal();
+    setTimeout(() => {
+      dialogRef.current?.showModal();
+    }, 0);
+  };
+
+  const closeDialog = (): void => {
+    dialogRef.current?.close();
+
+    setTimeout(() => {
+      setIsDialogRendered(false);
+    }, 300);
   };
 
   return (
@@ -69,7 +78,7 @@ const Item = ({ todo }: Props) => {
         <div className="actions">
           {!todo.completed && (
             <Tooltip content="Edit">
-              <button type="button" className="edit-btn" onClick={toggleDialog}>
+              <button type="button" className="edit-btn" onClick={openDialog}>
                 <EditIcon />
               </button>
             </Tooltip>
@@ -95,12 +104,14 @@ const Item = ({ todo }: Props) => {
         </div>
       </TodoItem>
 
-      <TodoDialog
-        dialogRef={dialogRef}
-        toggleDialog={toggleDialog}
-        action="edit"
-        todo={todo}
-      />
+      {isDialogRendered && (
+        <TodoDialog
+          dialogRef={dialogRef}
+          closeDialog={closeDialog}
+          action="edit"
+          todo={todo}
+        />
+      )}
     </>
   );
 };

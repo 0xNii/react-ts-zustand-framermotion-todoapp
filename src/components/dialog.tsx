@@ -9,12 +9,12 @@ import { CloseIcon } from '../utils/icons';
 
 type Props = {
   dialogRef: React.RefObject<HTMLDialogElement | null>;
-  toggleDialog: () => void;
+  closeDialog: () => void;
   action: 'add' | 'edit';
   todo?: Todo;
 };
 
-const TodoDialog = ({ dialogRef, toggleDialog, action, todo }: Props) => {
+const TodoDialog = ({ dialogRef, closeDialog, action, todo }: Props) => {
   const todoInput = useRef<HTMLInputElement>(null);
 
   /* Set todo text as input value when editing todo */
@@ -47,7 +47,7 @@ const TodoDialog = ({ dialogRef, toggleDialog, action, todo }: Props) => {
       addNewTodo(todo);
 
       /* Close dialog */
-      toggleDialog();
+      closeDialog();
 
       /* Reset input */
       todoInput.current.value = '';
@@ -66,7 +66,7 @@ const TodoDialog = ({ dialogRef, toggleDialog, action, todo }: Props) => {
       setTodos(updatedTodos);
 
       /* Close Dialog */
-      toggleDialog();
+      closeDialog();
     }
   };
 
@@ -81,13 +81,13 @@ const TodoDialog = ({ dialogRef, toggleDialog, action, todo }: Props) => {
       e.clientY < dialogDimensions.top ||
       e.clientY > dialogDimensions.bottom
     ) {
-      dialogRef.current.close();
+      closeDialog();
     }
   };
 
   return (
     <Dialog ref={dialogRef} onClick={lightDismiss}>
-      <span className="close-btn" onClick={toggleDialog}>
+      <span className="close-btn" onClick={closeDialog}>
         <CloseIcon />
       </span>
 

@@ -16,6 +16,7 @@ const TodoInput = ({ ref, placeholder, ...eventHandler }: Props) => {
       type="text"
       name="todo-input"
       placeholder={placeholder}
+      autoComplete="off"
       {...eventHandler}
     />
   );

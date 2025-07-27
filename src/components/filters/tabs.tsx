@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 const FilterTabs = () => {
   const { pathname } = useLocation();
 
-  const { todos } = useTodoStore();
+  const todos = useTodoStore((state) => state.todos);
   const activeTodosCount = todos.filter((todo) => !todo.completed).length;
   const completedTodosCount = todos.filter((todo) => todo.completed).length;
 

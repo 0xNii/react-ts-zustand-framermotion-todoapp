@@ -30,7 +30,7 @@ const createTodoStore: StateCreator<State & Actions> = (set, get) => ({
 
   addNewTodo: (todo) => set({ todos: [...get().todos, todo] }),
   removeTodo: (id) => {
-    const filteredTodos = get().todos.filter((todo) => !(todo.id === id));
+    const filteredTodos = get().todos.filter((todo) => todo.id !== id);
 
     get().setTodos(filteredTodos);
   },

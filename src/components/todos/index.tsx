@@ -9,7 +9,8 @@ import { styled } from 'styled-components';
 const TodoList = () => {
   const { pathname } = useLocation();
 
-  const { todos, setTodos } = useTodoStore();
+  const todos = useTodoStore((state) => state.todos);
+  const setTodos = useTodoStore((state) => state.setTodos);
   const activeTodosCount = todos.filter((todo) => !todo.completed).length;
   const completedTodosCount = todos.filter((todo) => todo.completed).length;
 

@@ -1,10 +1,8 @@
-import { screen } from '@testing-library/react';
-import TestRenderer from '../testUtil';
+import { renderWithStore } from '../testUtil';
 import TodoList from '../components/todos';
-import Item from '../components/todos/todo';
-// import type { State } from '../store/todoStore';
+import type { State } from '../store/todoStore';
 
-const initialState = {
+const preloadedState: State = {
   todos: [
     {
       id: 'TsHx9eEN5Y4A',
@@ -25,14 +23,11 @@ const initialState = {
 };
 
 test('should render 3 todo items in initialAppState', async () => {
-  const screen = TestRenderer(<TodoList />, initialState, '/completed');
-
-  // screen.debug();
-
-  // console.log('Environment:', process.env.NODE_ENV);
+  const screen = renderWithStore(<TodoList />, {
+    preloadedState: preloadedState,
+    route: '/',
+  });
 
   expect(screen.getByTestId('todo-list')).toBeInTheDocument();
-  expect(screen.getByTestId('todo-list').children.length).toBe(2);
-
-  // expect(screen.getByText(/Review code/i)).toBeInTheDocument();
+  expect(screen.getByTestId('todo-list').children.length).toBe(6);
 });

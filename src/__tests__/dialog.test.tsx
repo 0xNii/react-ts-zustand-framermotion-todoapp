@@ -1,14 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import TodoApp from '../components/TodoApp';
-import { MemoryRouter } from 'react-router-dom';
-
-const renderApp = () => {
-  return render(
-    <MemoryRouter>
-      <TodoApp />
-    </MemoryRouter>
-  );
-};
+import { renderApp } from '../testUtil';
 
 describe('Dialog', () => {
   /**
@@ -22,7 +14,7 @@ describe('Dialog', () => {
   });
 
   test('renders a todo text input', () => {
-    renderApp();
+    renderApp(<TodoApp />);
 
     const button = screen.getByText(/Add New Todo/);
 
@@ -34,7 +26,7 @@ describe('Dialog', () => {
   });
 
   test('todo text input takes a value', () => {
-    renderApp();
+    renderApp(<TodoApp />);
 
     const button = screen.getByText(/Add New Todo/);
 

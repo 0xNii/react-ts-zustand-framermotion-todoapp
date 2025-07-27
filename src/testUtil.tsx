@@ -1,28 +1,29 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { render } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { useTodoStoreTest } from './store/todoStore';
 import type { State, Paths } from './store/todoStore';
 
-const defaultValue: State = {
-  todos: [],
+type TestOptions = {
+  route?: Paths;
+  preloadedState?: State;
 };
 
-const TestRenderer = (
-  ui: React.ReactElement,
-  initialState: State = defaultValue,
-  route: Paths = '/'
+export const renderWithStore = (
+  ui: ReactNode,
+  {
+    route = '/',
+    preloadedState = {
+      todos: [],
+    },
+  }: TestOptions
 ) => {
   // Set store todos state
-  useTodoStoreTest.setState({ ...initialState });
+  useTodoStoreTest.setState({ ...preloadedState });
 
-  return render(
-    <MemoryRouter initialEntries={[route]}>
-      <Routes>
-        <Route path="*" element={ui} />
-      </Routes>
-    </MemoryRouter>
-  );
+  return render(<MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>);
 };
 
-export default TestRenderer;
+export const renderApp = (ui: ReactNode) => {
+  return render(<MemoryRouter>{ui}</MemoryRouter>);
+};

@@ -35,6 +35,7 @@ const FilterActions = () => {
             type="button"
             className="clear-btn"
             onClick={clearCompletedTodos}
+            data-testid="clear-todos-btn"
           >
             <ClearIcon />
           </button>
@@ -43,7 +44,12 @@ const FilterActions = () => {
 
       {pathname === '/active' && activeTodosCount > 0 && (
         <Tooltip content="Mark all todos">
-          <button type="button" className="mark-btn" onClick={markAllTodos}>
+          <button
+            type="button"
+            className="mark-btn"
+            onClick={markAllTodos}
+            data-testid="mark-all-todos-btn"
+          >
             <MarkIcon />
           </button>
         </Tooltip>
@@ -51,7 +57,12 @@ const FilterActions = () => {
 
       {pathname === '/completed' && completedTodosCount > 0 && (
         <Tooltip content="Readd todos">
-          <button type="button" className="add-btn" onClick={readdTodos}>
+          <button
+            type="button"
+            className="add-btn"
+            onClick={readdTodos}
+            data-testid="readd-todos-btn"
+          >
             <ReaddIcon />
           </button>
         </Tooltip>

@@ -49,12 +49,7 @@ const Item = ({ todo }: Props) => {
 
   return (
     <>
-      <TodoItem
-        value={todo}
-        data-testid="todo-item"
-        dragListener={false}
-        dragControls={dragControls}
-      >
+      <TodoItem value={todo} dragListener={false} dragControls={dragControls}>
         <div className="text">
           <Checkbox>
             <input
@@ -62,6 +57,7 @@ const Item = ({ todo }: Props) => {
               id={todo.id}
               onChange={() => toggleTodoComplete(todo.id)}
               checked={todo.completed}
+              aria-label="checkbox"
             />
             <label htmlFor={todo.id} className="check-box" />
           </Checkbox>
@@ -78,7 +74,12 @@ const Item = ({ todo }: Props) => {
         <div className="actions">
           {!todo.completed && (
             <Tooltip content="Edit">
-              <button type="button" className="edit-btn" onClick={openDialog}>
+              <button
+                type="button"
+                className="edit-btn"
+                onClick={openDialog}
+                aria-label="edit"
+              >
                 <EditIcon />
               </button>
             </Tooltip>
@@ -89,6 +90,7 @@ const Item = ({ todo }: Props) => {
               type="button"
               className="delete-btn"
               onClick={() => removeTodo(todo.id)}
+              aria-label="delete"
             >
               <DeleteIcon />
             </button>

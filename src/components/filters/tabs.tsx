@@ -84,7 +84,7 @@ const Tabs = styled.ul`
 
   .tag {
     margin-left: 6px;
-    border: 1px dashed var(--primary-200);
+    border: 1px solid var(--primary-200);
     border-radius: 34px;
     padding: 1px 6px;
     color: var(--primary-600);

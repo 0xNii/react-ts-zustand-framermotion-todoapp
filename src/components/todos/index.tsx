@@ -65,7 +65,6 @@ const TodoList = () => {
 
   return (
     <Reorder.Group
-      data-testid="todo-list"
       axis="y"
       onReorder={setItems}
       values={items}

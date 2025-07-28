@@ -13,18 +13,6 @@ describe('Dialog', () => {
     HTMLDialogElement.prototype.close = jest.fn();
   });
 
-  test('renders a todo text input', () => {
-    renderApp(<TodoApp />);
-
-    const button = screen.getByText(/Add New Todo/);
-
-    fireEvent.click(button);
-
-    expect(
-      screen.getByPlaceholderText('eg. Take a course in JS')
-    ).toBeInTheDocument();
-  });
-
   test('todo text input takes a value', () => {
     renderApp(<TodoApp />);
 

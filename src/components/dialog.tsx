@@ -46,11 +46,11 @@ const TodoDialog = ({ dialogRef, closeDialog, action, todo }: Props) => {
       /* Add new todo to TODOS state */
       addNewTodo(todo);
 
-      /* Close dialog */
-      closeDialog();
-
       /* Reset input */
       todoInput.current.value = '';
+
+      /* Close dialog */
+      closeDialog();
     }
   };
 
@@ -87,7 +87,11 @@ const TodoDialog = ({ dialogRef, closeDialog, action, todo }: Props) => {
 
   return (
     <Dialog ref={dialogRef} onClick={lightDismiss}>
-      <span className="close-btn" onClick={closeDialog}>
+      <span
+        className="close-btn"
+        onClick={closeDialog}
+        aria-label="close-dialog-btn"
+      >
         <CloseIcon />
       </span>
 

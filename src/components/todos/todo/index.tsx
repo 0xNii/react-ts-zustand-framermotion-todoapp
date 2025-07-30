@@ -100,6 +100,7 @@ const Item = ({ todo }: Props) => {
             type="button"
             style={{ cursor: 'grab' }}
             onPointerDown={(event) => dragControls.start(event)}
+            aria-label="drag"
           >
             <DragHandleIcon />
           </button>

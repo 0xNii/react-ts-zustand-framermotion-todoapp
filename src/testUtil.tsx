@@ -27,3 +27,24 @@ export const renderWithStore = (
 export const renderApp = (ui: ReactNode) => {
   return render(<MemoryRouter>{ui}</MemoryRouter>);
 };
+
+// Todos sample to be used in tests
+export const preloadedState: State = {
+  todos: [
+    {
+      id: 'TsHx9eEN5Y4A',
+      text: 'Learn to code',
+      completed: false,
+    },
+    {
+      id: 'ba91OwrK0Dt8',
+      text: 'Write tests',
+      completed: false,
+    },
+    {
+      id: 'QeejYipEf5nk',
+      text: 'Merge conflicts',
+      completed: true,
+    },
+  ],
+};

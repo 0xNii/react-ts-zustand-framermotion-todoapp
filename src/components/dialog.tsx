@@ -131,7 +131,6 @@ const Dialog = styled.dialog`
   animation: slide-out-down 0.5s cubic-bezier(0.25, 0, 0.3, 1) forwards;
 
   &:not([open]) {
-    pointer-events: none;
     opacity: 0;
   }
 

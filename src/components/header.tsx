@@ -39,7 +39,9 @@ const Header = () => {
       <Layout>
         <div className="header">
           <h1>Today's Todos</h1>
-          <span className="date">{formattedDate}</span>
+          <span className="date" aria-label="date">
+            {formattedDate}
+          </span>
         </div>
 
         <button type="button" className="addTodo" onClick={openDialog}>

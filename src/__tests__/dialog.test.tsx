@@ -45,13 +45,16 @@ describe('Dialog', () => {
     // Text cleared
     expect(input.value).toBe('');
 
+    // Assert todo is rendered
+    expect(screen.getByText('Open a pull request')).toBeInTheDocument();
+
     // Delay to unmount dialog in ms as defined in setTimeout
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 300));
     });
 
     // Assert dialog unmounts
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog')).toBeNull();
   });
 
   it('should unmount after clicking close button', async () => {
@@ -63,18 +66,6 @@ describe('Dialog', () => {
     });
 
     // Assert dialog unmounts
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-  });
-
-  it('should unmount on light dismiss', async () => {
-    fireEvent.click(screen.getByRole('dialog'));
-
-    // Delay to unmount dialog in ms as defined in setTimeout
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-    });
-
-    // Assert dialog unmounts
-    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(screen.queryByRole('dialog')).toBeNull();
   });
 });

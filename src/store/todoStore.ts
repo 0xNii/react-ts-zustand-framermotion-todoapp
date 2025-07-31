@@ -28,13 +28,13 @@ const initialState: State = {
 const createTodoStore: StateCreator<State & Actions> = (set, get) => ({
   ...initialState,
 
+  setTodos: (todos) => set({ todos }),
   addNewTodo: (todo) => set({ todos: [...get().todos, todo] }),
   removeTodo: (id) => {
     const filteredTodos = get().todos.filter((todo) => todo.id !== id);
 
     get().setTodos(filteredTodos);
   },
-  setTodos: (todos) => set({ todos }),
 });
 
 // Production store with persistence

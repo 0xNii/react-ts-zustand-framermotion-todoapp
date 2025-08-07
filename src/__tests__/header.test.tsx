@@ -13,7 +13,7 @@ describe('Header', () => {
   });
 
   it('has a button which renders a dialog on click', () => {
-    const button = screen.getByRole('button', { name: /Add New Todo/ });
+    const button = screen.getByRole('button', { name: /add new todo/i });
     expect(button).toBeInTheDocument();
 
     fireEvent.click(button);

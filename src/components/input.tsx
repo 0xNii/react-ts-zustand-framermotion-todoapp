@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 type Props = {
   ref: React.RefObject<HTMLInputElement | null>;
   placeholder?: string;
-  onKeyUp?: (
+  onKeyUp: (
     e: any
   ) => void | React.KeyboardEventHandler<HTMLInputElement> /* Event handler */;
 };

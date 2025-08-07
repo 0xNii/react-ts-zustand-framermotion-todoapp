@@ -1,8 +1,61 @@
-import { screen, fireEvent, act } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import TodoApp from '../components/TodoApp';
 import { renderApp } from '../testUtil';
+import Dialog from '../components/dialog';
+import type { Todo } from '../store/todoStore';
 
-describe('Dialog', () => {
+describe('Unit test for Dialog', () => {
+  it('should render an empty input if action is add', () => {
+    const dialogRef = React.createRef<HTMLDialogElement>(); // Create dialogRef
+    const closeDialog = jest.fn(); // Mock function
+
+    // prettier-ignore
+    render(<Dialog dialogRef={dialogRef} closeDialog={closeDialog} action="add" />);
+
+    expect(dialogRef.current).not.toBeNull();
+    expect(screen.getByRole('heading')).toHaveTextContent(/type/i);
+    expect((screen.getByRole('textbox') as HTMLInputElement).value).toBe('');
+  });
+
+  it('should render an input with text if action is edit', () => {
+    const dialogRef = React.createRef<HTMLDialogElement>();
+    const closeDialog = jest.fn();
+    const todo: Todo = {
+      id: '1',
+      text: 'Test dialog',
+      completed: false,
+    };
+
+    render(
+      <Dialog
+        dialogRef={dialogRef}
+        closeDialog={closeDialog}
+        action="edit"
+        todo={todo}
+      />
+    );
+
+    expect(screen.getByRole('heading')).toHaveTextContent(/edit/i);
+    expect((screen.getByRole('textbox') as HTMLInputElement).value).toBe(
+      'Test dialog'
+    );
+  });
+
+  it('should trigger close dialog on close button click', () => {
+    const dialogRef = React.createRef<HTMLDialogElement>();
+    const closeDialog = jest.fn();
+
+    // prettier-ignore
+    render(<Dialog dialogRef={dialogRef} closeDialog={closeDialog} action="add" />);
+
+    fireEvent.click(screen.getByLabelText('close-dialog-btn'));
+
+    expect(closeDialog).toHaveBeenCalled();
+  });
+});
+
+describe('Integration testing with Dialog', () => {
   // Runs before each test case
   beforeEach(() => {
     /**

@@ -18,7 +18,7 @@ describe('Todo Store', () => {
       completed: false,
     };
 
-    // Add
+    // Add todo to store state
     act(() => {
       result.current.addNewTodo(todo);
     });
@@ -26,7 +26,7 @@ describe('Todo Store', () => {
     expect(result.current.todos.length).toBe(1);
     expect(result.current.todos).toEqual([todo]);
 
-    // Remove
+    // Remove todo from store state
     act(() => {
       result.current.removeTodo(todo['id']);
     });

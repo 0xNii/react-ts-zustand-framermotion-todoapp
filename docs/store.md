@@ -16,7 +16,7 @@
   `useTodoStore` wraps `createTodoStore` with Zustand’s `persist` middleware to save state to `localStorage` under the key **"Today's Todos"**.
 
 - **Test Store**  
-  `useTodoTestStore` uses `createTodoStore` directly, bypassing persistence, so tests don’t interact with `localStorage`.
+  `useTodoStoreTest` uses `createTodoStore` directly, bypassing persistence, so tests don’t interact with `localStorage`.
 
 ---
 

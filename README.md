@@ -21,13 +21,13 @@ and intermediate developers alike.
 
 ## Stack
 
-- ⚡ [Vite](https://vitejs.dev/) — Fast development server and build tool
-- ⚛️ [React](https://reactjs.org/) — UI library
-- 🟦 [TypeScript](https://www.typescriptlang.org/) — Typed JavaScript
-- 🧭 [React Router](https://reactrouter.com/) — Declarative routing
-- 🎨 [Styled-Components](https://styled-components.com/) — CSS-in-JS styling
-- 🐻 [Zustand](https://zustand-demo.pmnd.rs/) — Simple and scalable state management
-- 🏃‍♂️ [Framer Motion](https://motion.dev/docs/react) — Animation library for React
+- [Vite](https://vitejs.dev/) — Fast development server and build tool
+- [React](https://reactjs.org/) — UI library
+- [TypeScript](https://www.typescriptlang.org/) — Typed JavaScript
+- [React Router](https://reactrouter.com/) — Declarative routing
+- [Styled-Components](https://styled-components.com/) — CSS-in-JS styling
+- [Zustand](https://zustand-demo.pmnd.rs/) — Simple and scalable state management
+- [Framer Motion](https://motion.dev/docs/react) — Animation library for React
 
 ---
 

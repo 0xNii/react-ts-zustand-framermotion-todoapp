@@ -22,9 +22,9 @@ const TodoDialog = ({ dialogRef, closeDialog, action, todo }: Props) => {
     if (!todoInput.current) return;
 
     if (action === 'edit') {
-      todoInput.current.value = todo!!!.text;
+      todoInput.current.value = todo!.text;
     }
-  }, []);
+  }, [action]);
 
   const todos = useTodoStore((state) => state.todos);
   const setTodos = useTodoStore((state) => state.setTodos);
@@ -60,7 +60,7 @@ const TodoDialog = ({ dialogRef, closeDialog, action, todo }: Props) => {
     if (e.key === 'Enter' && todoInput.current.value.trim().length > 0) {
       /* The Non-Null assertion operator(!) tells TypeScript that todoInput.current is not null */
       const updatedTodos = todos.map((todo) =>
-        todo.id === id ? { ...todo, text: todoInput.current!!!.value } : todo
+        todo.id === id ? { ...todo, text: todoInput.current!.value } : todo
       );
 
       setTodos(updatedTodos);
@@ -101,8 +101,8 @@ const TodoDialog = ({ dialogRef, closeDialog, action, todo }: Props) => {
         </h1>
         <TodoInput
           ref={todoInput}
-          onKeyUp={(e) =>
-            action === 'add' ? addNewTodoHandler(e) : updateTodo(e, todo!!!.id)
+          onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) =>
+            action === 'add' ? addNewTodoHandler(e) : updateTodo(e, todo!.id)
           }
           placeholder="eg. Take a course in JS"
         />

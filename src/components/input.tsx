@@ -5,7 +5,7 @@ type Props = {
   ref: React.RefObject<HTMLInputElement | null>;
   placeholder?: string;
   onKeyUp: (
-    e: any
+    e: React.KeyboardEvent<HTMLInputElement>
   ) => void | React.KeyboardEventHandler<HTMLInputElement> /* Event handler */;
 };
 

@@ -13,7 +13,7 @@ describe('TodoItem', () => {
         values={preloadedState.todos}
         onReorder={() => {}}
       >
-        <Item todo={preloadedState.todos[0]!!!} />
+        <Item todo={preloadedState.todos[0]!} />
       </Reorder.Group>,
       {
         preloadedState: preloadedState,
@@ -35,7 +35,7 @@ describe('TodoItem', () => {
         values={preloadedState.todos}
         onReorder={() => {}}
       >
-        <Item todo={preloadedState.todos[2]!!!} />
+        <Item todo={preloadedState.todos[2]!} />
       </Reorder.Group>,
       {
         preloadedState: preloadedState,
@@ -57,7 +57,7 @@ describe('TodoItem', () => {
         values={preloadedState.todos}
         onReorder={() => {}}
       >
-        <Item todo={preloadedState.todos[0]!!!} />
+        <Item todo={preloadedState.todos[0]!} />
       </Reorder.Group>,
       {
         preloadedState: preloadedState,
@@ -76,14 +76,14 @@ describe('TodoItem', () => {
         values={preloadedState.todos}
         onReorder={() => {}}
       >
-        <Item todo={preloadedState.todos[0]!!!} />
+        <Item todo={preloadedState.todos[0]!} />
       </Reorder.Group>,
       {
         preloadedState: preloadedState,
       }
     );
 
-    expect(useTodoStoreTest.getState().todos[0]!!!.text).toBe('Learn to code');
+    expect(useTodoStoreTest.getState().todos[0]!.text).toBe('Learn to code');
 
     expect(screen.getAllByRole('listitem')).toHaveLength(1);
     expect(screen.getByText(/Learn to code/)).toBeInTheDocument();
@@ -108,7 +108,7 @@ describe('TodoItem', () => {
     await user.clear(input);
     await user.type(input, 'Open a pull request{enter}');
 
-    expect(useTodoStoreTest.getState().todos[0]!!!.text).toBe(
+    expect(useTodoStoreTest.getState().todos[0]!.text).toBe(
       'Open a pull request'
     );
 
@@ -127,21 +127,21 @@ describe('TodoItem', () => {
         values={preloadedState.todos}
         onReorder={() => {}}
       >
-        <Item todo={preloadedState.todos[0]!!!} />
+        <Item todo={preloadedState.todos[0]!} />
       </Reorder.Group>,
       {
         preloadedState: preloadedState,
       }
     );
 
-    expect(useTodoStoreTest.getState().todos[0]!!!.text).toBe('Learn to code');
+    expect(useTodoStoreTest.getState().todos[0]!.text).toBe('Learn to code');
 
     const deleteBtn = screen.getByRole('button', { name: /delete/ });
     expect(deleteBtn).toBeInTheDocument();
 
     fireEvent.click(deleteBtn);
 
-    expect(useTodoStoreTest.getState().todos[0]!!!.text).not.toBe(
+    expect(useTodoStoreTest.getState().todos[0]!.text).not.toBe(
       'Learn to code'
     );
   });

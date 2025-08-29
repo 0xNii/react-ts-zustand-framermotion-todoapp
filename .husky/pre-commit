@@ -1,0 +1,8 @@
+echo '
+INFO: This project has a pre-commit hook to execute linting, automatically fixing issues when possible and enforcing style rules with prettier.
+'
+
+pnpm lint-staged || {
+  echo "ERROR: Linting issues were found in the committed files. Please address them before proceeding."
+  exit 1
+}

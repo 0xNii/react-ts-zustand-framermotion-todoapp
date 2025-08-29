@@ -18,13 +18,11 @@ describe('TodoList', () => {
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getByRole('list').children.length).toBe(3);
     expect(Array.isArray(screen.getAllByRole('listitem'))).toBe(true);
-    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent(
-      'Learn to code'
-    );
+    // prettier-ignore
+    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent('Learn to code');
     expect(screen.getAllByRole('listitem')[1]).toHaveTextContent('Write tests');
-    expect(screen.getAllByRole('listitem')[2]).toHaveTextContent(
-      'Merge conflicts'
-    );
+    // prettier-ignore
+    expect(screen.getAllByRole('listitem')[2]).toHaveTextContent('Merge conflicts');
   });
 
   it("should render 2 todo items with preloadedState on path '/active'", () => {
@@ -35,9 +33,8 @@ describe('TodoList', () => {
 
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getByRole('list').children.length).toBe(2);
-    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent(
-      'Learn to code'
-    );
+    // prettier-ignore
+    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent('Learn to code');
     expect(screen.getAllByRole('listitem')[1]).toHaveTextContent('Write tests');
     expect(screen.getAllByLabelText('checkbox')[0]).not.toBeChecked();
     expect(screen.getAllByLabelText('checkbox')[1]).not.toBeChecked();
@@ -52,9 +49,8 @@ describe('TodoList', () => {
 
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getByRole('list').children.length).toBe(1);
-    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent(
-      'Merge conflicts'
-    );
+    // prettier-ignore
+    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent('Merge conflicts');
     expect(screen.getAllByLabelText('checkbox')[0]).toBeChecked();
     expect(screen.queryByRole('button', { name: /edit/i })).toBeNull();
   });
@@ -78,9 +74,8 @@ describe('TodoList', () => {
     // Assertions
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getByRole('list').children.length).toBe(2);
-    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent(
-      'Learn to code'
-    );
+    // prettier-ignore
+    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent('Learn to code');
     expect(screen.getAllByRole('listitem')[1]).toHaveTextContent('Write tests');
   });
 

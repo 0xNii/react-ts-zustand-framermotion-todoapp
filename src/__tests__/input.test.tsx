@@ -33,8 +33,8 @@ describe('TodoInput', () => {
     );
 
     const user = userEvent.setup();
-    await user.clear(ref.current!!!);
-    await user.type(ref.current!!!, 'Open a pull request{enter}');
+    await user.clear(ref.current!);
+    await user.type(ref.current!, 'Open a pull request{enter}');
 
     expect(keyUp).toHaveBeenCalled();
   });

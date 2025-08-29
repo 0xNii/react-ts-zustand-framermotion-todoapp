@@ -65,7 +65,7 @@ const Tooltip = ({
       c.left + tt.width <= window.innerWidth;
 
     if (!fits(coords)) {
-      for (let p of placements) {
+      for (const p of placements) {
         const alt = compute(p);
         if (fits(alt)) {
           coords = alt;

@@ -1,8 +1,17 @@
 {
   "name": "todoapp",
-  "private": true,
   "version": "0.0.0",
-  "author": "0xNii",
+  "description": "A react.js todo app with type safety, client state management and motion.",
+  "license": "MIT",
+  "author": "Michael Lamptey(0xNii) <michaellamptey395@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xNii/react-ts-zustand-framermotion-todoapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/0xNii/react-ts-zustand-framermotion-todoapp/issues"
+  },
+  "homepage": "https://todays-todos.vercel.app/",
   "dependencies": {
     "framer-motion": "^12.23.0",
     "react": "^19.1.0",

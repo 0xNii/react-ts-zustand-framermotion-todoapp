@@ -1,0 +1,24 @@
+name: Commitlint
+on:
+  push:
+    branches-ignore:
+      - main # skips running on main
+jobs:
+  lint-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # needed to get full commit history
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run Commitlint
+        run: npx commitlint --from origin/main --to HEAD --verbose
